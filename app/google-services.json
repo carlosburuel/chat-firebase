@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "548697420513",
+    "firebase_url": "https://poronga-162500.firebaseio.com",
+    "project_id": "poronga-162500",
+    "storage_bucket": "poronga-162500.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548697420513:android:b603f394d3782274",
+        "android_client_info": {
+          "package_name": "mx.cburuel.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548697420513-s17ctsalvgjgj7jnv44d62loak6tr240.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.cburuel.chatapp",
+            "certificate_hash": "2e3e2e047e5a153943df1302879d92dcced2decb"
+          }
+        },
+        {
+          "client_id": "548697420513-ehb0ngkirdvfi8ctfqqvbt8urnaqfbi4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB13GktxGxtgL5jIyp1eXlHKVpT0OAxQfo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548697420513-ehb0ngkirdvfi8ctfqqvbt8urnaqfbi4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

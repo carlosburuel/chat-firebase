@@ -21,63 +21,66 @@ public class ActividadPrincipal
 	extends AppCompatActivity
 	implements View.OnClickListener
 {
-	TextView tvCondicion;
+	TextView tvUsuario;
+	TextView tvPregunta;
 	Button btnSunny;
 	Button btnFoggy;
 
 	//Referencia a la base de datos
 	DatabaseReference referenciaRaiz = FirebaseDatabase.getInstance().getReference();
 	//Nueva referencia a condition
-	DatabaseReference referenciaCondicion = referenciaRaiz.child("condition");
+	DatabaseReference referenciaUsuarios = referenciaRaiz.child("usuarios");
+	DatabaseReference referenciaPreguntas = referenciaRaiz.child("preguntas");
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.actividad_principal);
-		tvCondicion = (TextView) findViewById(R.id.tvCondicion);
-		btnSunny = (Button) findViewById(R.id.sunny);
-		btnFoggy = (Button) findViewById(R.id.foggy);
+		tvUsuario = (TextView) findViewById(R.id.tvUsuario);
+		tvPregunta = (TextView) findViewById(R.id.tvPregunta);
+		btnSunny = (Button) findViewById(R.id.usuario);
+		btnFoggy = (Button) findViewById(R.id.pregunta);
 	}
 
 	@Override
 	protected void onStart()
 	{
 		super.onStart();
-		if( referenciaCondicion!= null )
+		referenciaUsuarios.addValueEventListener(new ValueEventListener()
 		{
-			referenciaCondicion.addValueEventListener(new ValueEventListener()
+			@Override
+			public void onDataChange(DataSnapshot dataSnapshot)
 			{
-				@Override
-				public void onDataChange(DataSnapshot dataSnapshot)
-				{
-					Object texto = dataSnapshot.getValue();
-//				Object texto = dataSnapshot.getValue(String.class);
-					tvCondicion.setText( texto != null ? texto.toString() : "" );
-				}
+				Object texto = dataSnapshot.getValue();
+				tvUsuario.setText( texto != null ? texto.toString() : "" );
+			}
 
-				@Override
-				public void onCancelled(DatabaseError databaseError)
-				{
+			@Override
+			public void onCancelled(DatabaseError databaseError)
+			{
 
-				}
-			});
+			}
+		});
 
-			btnSunny.setOnClickListener(this);
-			btnFoggy.setOnClickListener(this);
-		}
-	}
-
-	public static class Post
-	{
-		public String autor;
-		public String titulo;
-
-		public Post(String autor, String titulo)
+		referenciaPreguntas.addValueEventListener(new ValueEventListener()
 		{
-			this.autor = autor;
-			this.titulo = titulo;
-		}
+			@Override
+			public void onDataChange(DataSnapshot dataSnapshot)
+			{
+				Object texto = dataSnapshot.getValue();
+				tvPregunta.setText( texto != null ? texto.toString() : "" );
+			}
+
+			@Override
+			public void onCancelled(DatabaseError databaseError)
+			{
+
+			}
+		});
+
+		btnSunny.setOnClickListener(this);
+		btnFoggy.setOnClickListener(this);
 	}
 
 	@Override
@@ -85,18 +88,41 @@ public class ActividadPrincipal
 	{
 		switch(o_VISTA.getId())
 		{
-			case R.id.sunny:
+			case R.id.usuario:
 //				Cuando el mapeo sera un json simple
 //        Map<String, String> map = new HashMap<>();
 //				map.put("nombre", "carlos1");
 //				map.put("apellido", "buruel1");
-				DatabaseReference referencePush = referenciaCondicion.push();
-				referencePush.setValue(new Post("Carlos BO", "Pregunta"));
+				DatabaseReference referencePush = referenciaUsuarios.push();
+				referencePush.setValue(new Usuarios("Carlos BO", "Pregunta"));
 				break;
-			case R.id.foggy:
+			case R.id.pregunta:
 				//Ingreso de contenido en una sola cadena
-				referenciaCondicion.setValue("Texto de una sola linea!");
+				referenciaPreguntas.setValue(new Pregunta("Pregunta N"));
 				break;
 		}
 	}
+
+	public static class Usuarios
+	{
+		public String nombre;
+		public String apellido;
+
+		Usuarios(String nombre, String apellido)
+		{
+			this.nombre = nombre;
+			this.apellido = apellido;
+		}
+	}
+
+	public static class Pregunta
+	{
+		public String contenido;
+
+		public Pregunta(String contenido)
+		{
+			this.contenido = contenido;
+		}
+	}
 }
+//http://codehero.co/mongodb-desde-cero-modelado-de-datos/

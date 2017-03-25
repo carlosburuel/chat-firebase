@@ -6,20 +6,36 @@
   android:layout_height="match_parent">
 
 	<TextView
-		android:id="@+id/tvCondicion"
+		android:id="@+id/tvUsuario"
+		android:background="@android:color/holo_blue_light"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text="Cargando..."/>
 
-	<Button
-		android:id="@+id/sunny"
-		android:layout_width="wrap_content"
+	<TextView
+		android:id="@+id/tvPregunta"
+		android:background="@android:color/holo_green_light"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="Sunny"/>
+		android:text="Cargando..."/>
 
-	<Button
-		android:id="@+id/foggy"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="foggy"/>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="horizontal"
+		android:weightSum="2">
+		<Button
+			android:id="@+id/usuario"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Usuario"/>
+
+		<Button
+			android:id="@+id/pregunta"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Pregunta"/>
+	</LinearLayout>
 </LinearLayout>
